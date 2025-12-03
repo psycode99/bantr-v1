@@ -32,5 +32,5 @@ def get_current_user(token, db: Session = Depends(get_db)):
     user_id = int(payload.get('user_id'))
     user = db.query(User).filter_by(id=user_id).first()
     if not user:
-        return HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User Not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User Not Found")
     return user

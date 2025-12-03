@@ -21,3 +21,11 @@ class UserResp(BaseModel):
     country: str | None = None
     fav_team: str | None = None
     created_at: datetime
+
+class UserUpdate(BaseModel):
+    name: str
+    first_name: str
+    last_name: str | None = None
+    profile_pic: str | None = None
+    country: str | None = None
+    fav_team: str | None = None

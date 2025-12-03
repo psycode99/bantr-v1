@@ -14,3 +14,4 @@ class User(Base):
     country = Column(String, nullable=True)
     fav_team = Column(String, nullable=True)
     created_at = Column(TIMESTAMP, default=func.now(), nullable=False)
+    
