@@ -1,11 +1,10 @@
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
-import uvicorn
-from db.base import Base
-from db.session import engine
-from routers import auth, user_router
-import config
+from app.db.base import Base
+from app.db.session import engine
+from app.routers import auth, user_router
+from app import config
 
 
 app = FastAPI(

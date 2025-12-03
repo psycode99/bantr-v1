@@ -1,11 +1,11 @@
 from datetime import datetime, timezone, timedelta
 from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException, status
-from config import settings
+from app.config import settings
 from jose import jwt, JWTError
 
-from db.models.user_model import User
-from db.session import get_db
+from app.db.models.user_model import User
+from app.db.session import get_db
 
 SECRET_KEY = settings.secret_key
 ALGORITHM = settings.algorithm
