@@ -1,0 +1,52 @@
+from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
+import uvicorn
+from db.base import Base
+from db.session import engine
+from routers import auth
+import config
+
+
+app = FastAPI(
+    title="Bantr API",
+    description="A mini FastAPI application",
+    version="0.1.0"
+)
+app.add_middleware(SessionMiddleware, secret_key="secret-string")
+
+# Base.metadata.create_all(bind=engine)
+
+# Configure CORS
+origins = [
+    "http://localhost",
+    "http://localhost:5000",
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+def root():
+    """Root endpoint"""
+    return {"message": "Welcome to Bantr API"}
+
+
+@app.get("/health")
+def health_check():
+    """Health check endpoint"""
+    return {"status": "healthy"}
+
+settings = config.Settings()
+
+app.include_router(auth.router)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
