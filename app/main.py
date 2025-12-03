@@ -4,7 +4,7 @@ from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 from db.base import Base
 from db.session import engine
-from routers import auth
+from routers import auth, user_router
 import config
 
 
@@ -47,6 +47,6 @@ def health_check():
 settings = config.Settings()
 
 app.include_router(auth.router)
+app.include_router(user_router.router)
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+
