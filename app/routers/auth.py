@@ -1,8 +1,9 @@
 from fastapi import Depends, APIRouter, Request, status
+from sqlalchemy.orm import Session
+
 from app.auth_helpers.jwt_helper import create_access_token
 from app.oauth import google_oauth
 from app.db.session import get_db
-from sqlalchemy.orm import Session
 from app.schemas.token_schema import TokenData
 from app.db.models.user_model import User
 

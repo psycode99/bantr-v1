@@ -1,11 +1,12 @@
 from typing import Annotated, List
 from fastapi import Response, status, APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import update
+
 from app.auth_helpers.jwt_helper import get_current_user
 from app.db.models.user_model import User
 from app.db.session import get_db
 from app.schemas.user_schema import UserResp, UserUpdate
-from sqlalchemy import update
 from app.utils.errs import USER_ERROR_404_MESSAGE, USER_ERROR_401_MESSAGE,  USER_ERROR_204_MESSAGE
 
 
