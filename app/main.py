@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from app.db.base import Base
 from app.db.session import engine
-from app.routers import auth, user_router
+from app.routers import auth, user_router, match_router
 from app import config
 
 
@@ -47,5 +47,6 @@ settings = config.Settings()
 
 app.include_router(auth.router)
 app.include_router(user_router.router)
+app.include_router(match_router.router)
 
 
